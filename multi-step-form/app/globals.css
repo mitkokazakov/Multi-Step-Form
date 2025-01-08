@@ -7,3 +7,19 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.steps-navigation{
+  background-image: url('/bg-sidebar-mobile.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (min-width: 1024px) {
+  .steps-navigation{
+    background-image: url('/bg-sidebar-desktop.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
