@@ -1,9 +1,9 @@
 "use client"
 import React from "react";
 
-const FirstStep = () => {
+const FirstStep = ({handleStep, step}: {handleStep: React.Dispatch<React.SetStateAction<any>>, step: number}) => {
   return (
-    <div className="w-full h-full relative bg-gray-200 lg:flex lg:flex-col lg:justify-between items-center lg:bg-white">
+    <div className="w-full h-full relative bg-gray-200 duration-300 lg:flex lg:flex-col lg:justify-between items-center lg:bg-white">
       <div className="w-[90%] left-[50%] bg-white rounded-xl translate-x-[-50%] absolute top-[-10%] flex flex-col justify-center items-start gap-5 px-5 py-10 lg:static lg:translate-x-[0%] lg:w-full">
         <h1 className="text-3xl font-extrabold tracking-widest">
           Personal Info
@@ -47,7 +47,7 @@ const FirstStep = () => {
 
       <div className="w-full h-24 absolute bg-white bottom-0 flex justify-end items-center lg:static lg:px-5">
         <div className="w-[90%]  flex justify-end items-center mx-auto lg:w-full">
-          <button className="bg-blue-950 text-white text-xl px-6 py-2 rounded-md lg:text-base">
+          <button className="bg-blue-950 text-white text-xl px-6 py-2 rounded-md lg:text-base" onClick={() => {handleStep((prev: number) => { return prev + 1})}}>
             Next Step
           </button>
         </div>

@@ -21,7 +21,7 @@ const FormWrapper = () => {
       
       <StepsNavigation handleStep={setStep} step={step}/>
 
-      <StepsContainer />
+      <StepsContainer step={step} handleStep={setStep}/>
     </div>
   )
 }
