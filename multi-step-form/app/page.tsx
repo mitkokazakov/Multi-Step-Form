@@ -3,7 +3,7 @@ import FormWrapper from "./components/FormWrapper";
 
 export default function Home() {
   return (
-    <div className="h-screen bg-gray-200 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-200 flex items-center justify-center">
       <FormWrapper />
     </div>
   );

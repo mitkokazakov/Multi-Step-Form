@@ -5,7 +5,7 @@ import SecondStep from './SecondStep'
 
 const StepsContainer = ({handleStep, step}: {handleStep: React.Dispatch<React.SetStateAction<any>>, step: number}) => {
   return (
-    <div className='w-full h-full lg:w-[60%]'>
+    <div className='w-full h-full bg-slate-200 lg:w-[60%]'>
       
 
       {
