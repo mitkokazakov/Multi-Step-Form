@@ -17,7 +17,7 @@ const FormWrapper = () => {
 
     
   return (
-    <div className='w-full h-full bg-white flex flex-col relative lg:flex-row lg:w-[800px] lg:h-[600px] lg:justify-center lg:items-center lg:p-4 lg:rounded-xl lg:gap-10'>
+    <div className='w-full h-full bg-white flex flex-col relative lg:flex-row lg:w-[800px] lg:h-[600px] lg:justify-center lg:items-center lg:p-4 lg:rounded-xl lg:gap-10 xl:w-[1000px] xl:h-[600px]'>
       
       <StepsNavigation handleStep={setStep} step={step}/>
 

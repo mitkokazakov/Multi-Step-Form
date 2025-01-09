@@ -15,7 +15,7 @@
   background-size: cover;
 }
 
-.first-step{
+.first-step, .second-step{
   min-height: calc(100vh - 224px);
 }
 
@@ -27,7 +27,7 @@
     background-size: cover;
   }
 
-  .first-step{
+  .first-step, .second-step{
     height: 100%;
     min-height: auto;
   }

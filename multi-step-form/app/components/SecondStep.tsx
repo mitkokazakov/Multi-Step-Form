@@ -23,9 +23,9 @@ const SecondStep = ({
   return (
     <div
       data-aos="flip-down"
-      className="w-full h-full relative bg-gray-200 lg:flex lg:flex-col lg:justify-between items-center lg:bg-white"
+      className="w-full second-step flex flex-col justify-between items-center relative bg-transparent lg:flex lg:flex-col lg:justify-between lg:bg-white"
     >
-      <div className="w-[90%] left-[50%] bg-white rounded-xl translate-x-[-50%] absolute top-[-10%] flex flex-col justify-center items-start gap-5 px-5 py-10 lg:static lg:translate-x-[0%] lg:w-full">
+      <div className="w-[90%]  bg-white rounded-xl mx-auto -mt-24 flex flex-col justify-center items-start gap-5 px-5 py-10 lg:mt-0 lg:w-full">
         <h1 className="text-3xl font-extrabold tracking-widest">
           Select your plan
         </h1>
@@ -33,14 +33,15 @@ const SecondStep = ({
           You have the option of monthly or yearly billing.
         </p>
 
-        <div className="flex flex-col w-full gap-3">
-          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl">
+        <div className="flex flex-col w-full gap-3 lg:flex-row">
+          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3">
             <div>
               <Image
                 src={"/icon-arcade.svg"}
                 width={60}
                 height={60}
                 alt="arcade icon"
+                className="lg:w-[40px] lg:h-[40px]"
               />
             </div>
 
@@ -51,34 +52,36 @@ const SecondStep = ({
             </div>
           </div>
 
-          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl">
+          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3">
             <div>
               <Image
                 src={"/icon-advanced.svg"}
                 width={60}
                 height={60}
                 alt="arcade icon"
+                className="lg:w-[40px] lg:h-[40px]"
               />
             </div>
 
-            <div className="flex flex-col justify-center items-start gap-2">
+            <div className="flex flex-col justify-center items-start gap-1">
               <h6 className="text-lg font-bold">Advanced</h6>
               <p className="text-gray-400">$12/mo</p>
               <p className={`text-sm text-blue-900 duration-300 ${monthlYearly == true ? 'opacity-1' : 'opacity-0 hidden'}`}>2 months free</p>
             </div>
           </div>
 
-          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl">
+          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10">
             <div>
               <Image
                 src={"/icon-pro.svg"}
                 width={60}
                 height={60}
                 alt="arcade icon"
+                className="lg:w-[40px] lg:h-[40px]"
               />
             </div>
 
-            <div className="flex flex-col justify-center items-start gap-2">
+            <div className="flex flex-col justify-center items-start gap-1">
               <h6 className="text-lg font-bold">Pro</h6>
               <p className="text-gray-400">$15/mo</p>
               <p className={`text-sm text-blue-900 duration-300 ${monthlYearly == true ? 'opacity-1' : 'opacity-0 hidden'}`}>2 months free</p>
@@ -98,8 +101,12 @@ const SecondStep = ({
         </div>
       </div>
 
-      <div className="w-full h-24 absolute bg-white bottom-0 flex justify-end items-center lg:static lg:px-5">
-        <div className="w-[90%]  flex justify-end items-center mx-auto lg:w-full">
+      <div className="w-full h-24 mt-5 bg-white flex justify-end items-center lg:static lg:px-5">
+        <div className="w-[90%]  flex justify-end items-center mx-auto lg:w-full lg:justify-between">
+        <button className="text-gray-400 font-bold tracking-widest" onClick={() => {handleStep((prev: number) => {
+                return prev - 1;
+              });}}>Go Back</button>
+
           <button
             className="bg-blue-950 text-white text-xl px-6 py-2 rounded-md lg:text-base"
             onClick={() => {
@@ -110,6 +117,8 @@ const SecondStep = ({
           >
             Next Step
           </button>
+
+          
         </div>
       </div>
     </div>
