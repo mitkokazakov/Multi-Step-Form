@@ -1,9 +1,19 @@
 "use client"
-import React from "react";
+
+import React, { useEffect } from "react";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const FirstStep = ({handleStep, step}: {handleStep: React.Dispatch<React.SetStateAction<any>>, step: number}) => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000
+    })
+  },[])
+
   return (
-    <div className="w-full h-full relative bg-gray-200 duration-300 lg:flex lg:flex-col lg:justify-between items-center lg:bg-white">
+    <div  data-aos="flip-down" className="w-full h-full relative bg-gray-200 duration-300 lg:flex lg:flex-col lg:justify-between items-center lg:bg-white">
       <div className="w-[90%] left-[50%] bg-white rounded-xl translate-x-[-50%] absolute top-[-10%] flex flex-col justify-center items-start gap-5 px-5 py-10 lg:static lg:translate-x-[0%] lg:w-full">
         <h1 className="text-3xl font-extrabold tracking-widest">
           Personal Info
