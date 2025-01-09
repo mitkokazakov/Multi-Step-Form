@@ -13,12 +13,18 @@ const SecondStep = ({
 }) => {
 
   const [monthlYearly, setMonthlyYearly] = useState(false);
+
+  const [activeChoice, SetActiveChoice] = useState(0);
    
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
   }, []);
+
+  function HandleClickChoice(choice: number){
+    SetActiveChoice(choice);
+  }
 
   return (
     <div
@@ -34,7 +40,9 @@ const SecondStep = ({
         </p>
 
         <div className="flex flex-col w-full gap-3 lg:flex-row">
-          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3">
+          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 1 ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`} onClick={() => {
+            HandleClickChoice(1);
+          }}>
             <div>
               <Image
                 src={"/icon-arcade.svg"}
@@ -52,7 +60,9 @@ const SecondStep = ({
             </div>
           </div>
 
-          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3">
+          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 2 ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`}  onClick={() => {
+            HandleClickChoice(2);
+          }}>
             <div>
               <Image
                 src={"/icon-advanced.svg"}
@@ -70,7 +80,9 @@ const SecondStep = ({
             </div>
           </div>
 
-          <div className="w-full flex justify-start items-start gap-5 p-6 border-[1px] border-gray-300 rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10">
+          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 3 ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`}  onClick={() => {
+            HandleClickChoice(3);
+          }}>
             <div>
               <Image
                 src={"/icon-pro.svg"}
