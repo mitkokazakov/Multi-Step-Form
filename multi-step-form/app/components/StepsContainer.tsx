@@ -2,6 +2,7 @@
 import React from 'react'
 import FirstStep from './FirstStep'
 import SecondStep from './SecondStep'
+import ThirdStep from './ThirdStep'
 
 const StepsContainer = ({handleStep, step}: {handleStep: React.Dispatch<React.SetStateAction<any>>, step: number}) => {
   return (
@@ -14,6 +15,10 @@ const StepsContainer = ({handleStep, step}: {handleStep: React.Dispatch<React.Se
 
       {
         step == 2 ? <SecondStep step={step} handleStep={handleStep}/>: null
+      }
+
+{
+        step == 3 ? <ThirdStep step={step} handleStep={handleStep}/>: null
       }
     </div>
   )

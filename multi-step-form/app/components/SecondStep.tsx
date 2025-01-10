@@ -55,7 +55,7 @@ const SecondStep = ({
 
             <div className="flex flex-col justify-center items-start gap-1">
               <h6 className="text-lg font-bold">Arcade</h6>
-              <p className="text-gray-400">$9/mo</p>
+              <p className="text-gray-400">{monthlYearly ? '$90/yr' : '$9/mo'}</p>
               <p className={`text-sm text-blue-900 duration-300 ${monthlYearly == true ? 'opacity-1' : 'opacity-0 hidden'}`}>2 months free</p>
             </div>
           </div>
@@ -75,7 +75,7 @@ const SecondStep = ({
 
             <div className="flex flex-col justify-center items-start gap-1">
               <h6 className="text-lg font-bold">Advanced</h6>
-              <p className="text-gray-400">$12/mo</p>
+              <p className="text-gray-400">{monthlYearly ? '$120/yr' : '$12/mo'}</p>
               <p className={`text-sm text-blue-900 duration-300 ${monthlYearly == true ? 'opacity-1' : 'opacity-0 hidden'}`}>2 months free</p>
             </div>
           </div>
@@ -95,7 +95,7 @@ const SecondStep = ({
 
             <div className="flex flex-col justify-center items-start gap-1">
               <h6 className="text-lg font-bold">Pro</h6>
-              <p className="text-gray-400">$15/mo</p>
+              <p className="text-gray-400">{monthlYearly ? '$150/yr' : '$15/mo'}</p>
               <p className={`text-sm text-blue-900 duration-300 ${monthlYearly == true ? 'opacity-1' : 'opacity-0 hidden'}`}>2 months free</p>
             </div>
           </div>
