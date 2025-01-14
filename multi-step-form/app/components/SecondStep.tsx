@@ -3,27 +3,75 @@ import React, { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import Image from "next/image";
+import { Coiny } from "next/font/google";
 
 const SecondStep = ({
   handleStep,
   step,
+  handleData
 }: {
   handleStep: React.Dispatch<React.SetStateAction<any>>;
   step: number;
+  handleData: React.Dispatch<React.SetStateAction<any>>
 }) => {
+
+
+
+  const monthlyPrices = {
+    "Arcade": '$9/mo',
+    "Advanced": '$12/mo',
+    "Pro": '$15/mo',
+  }
+
+  const yearlyPrices = {
+    "Arcade": '$90/yr',
+    "Advanced": '$120/yr',
+    "Pro": '$150/yr',
+  }
+
 
   const [monthlYearly, setMonthlyYearly] = useState(false);
 
-  const [activeChoice, SetActiveChoice] = useState(0);
+  const [activeChoice, SetActiveChoice] = useState('');
    
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
-  }, []);
 
-  function HandleClickChoice(choice: number){
+    HandleDataUpdate(activeChoice,monthlYearly)
+  }, [activeChoice,monthlYearly]);
+
+  function HandleClickChoice(choice: string){
     SetActiveChoice(choice);
+  }
+
+  function HandleClickOptions(){
+
+    setMonthlyYearly((prev: boolean) => {
+        return !prev;
+    });
+  }
+
+  
+
+  function HandleDataUpdate(choice: string , currentPlanType: boolean){
+
+    let currentChoice = '';
+
+    if(choice == '' || choice == null || choice == undefined){
+      currentChoice = 'Arcade'
+    }
+    else{
+      currentChoice = choice;
+    }
+
+    handleData((prev: DataProps) => ({
+      ...prev,
+      planDuration: monthlYearly == false ? 'Monthly' : 'Yearly',
+      planType: currentChoice,
+      planPrice: currentPlanType == false ? monthlyPrices[currentChoice  as keyof typeof monthlyPrices] : yearlyPrices[currentChoice  as keyof typeof yearlyPrices]
+    }));
   }
 
   return (
@@ -40,8 +88,8 @@ const SecondStep = ({
         </p>
 
         <div className="flex flex-col w-full gap-3 lg:flex-row">
-          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 1 ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`} onClick={() => {
-            HandleClickChoice(1);
+          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 'Arcade' ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`} onClick={() => {
+            HandleClickChoice('Arcade');
           }}>
             <div>
               <Image
@@ -60,8 +108,8 @@ const SecondStep = ({
             </div>
           </div>
 
-          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 2 ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`}  onClick={() => {
-            HandleClickChoice(2);
+          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 'Advanced' ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`}  onClick={() => {
+            HandleClickChoice('Advanced');
           }}>
             <div>
               <Image
@@ -80,8 +128,8 @@ const SecondStep = ({
             </div>
           </div>
 
-          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 3 ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`}  onClick={() => {
-            HandleClickChoice(3);
+          <div className={`w-full cursor-pointer flex justify-start items-start gap-5 p-6 border-[1px] ${activeChoice == 'Pro' ? 'border-violet-600 bg-violet-50' : 'border-gray-300'} rounded-xl lg:flex-col lg:justify-between lg:p-4 lg:w-1/3 lg:gap-10`}  onClick={() => {
+            HandleClickChoice('Pro');
           }}>
             <div>
               <Image
@@ -105,7 +153,7 @@ const SecondStep = ({
           <div className="flex items-center space-x-4">
             <span className={`${monthlYearly == false ? 'text-blue-700' : 'text-gray-400'} font-bold`}>Monthly</span>
             <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" onChange={() => {setMonthlyYearly(!monthlYearly)}} className="sr-only peer" />
+              <input type="checkbox" onChange={HandleClickOptions} className="sr-only peer" />
               <div className="w-16 h-6 py-2 bg-blue-900 rounded-full peer-border-none peer-bg-blue-900 peer-checked:after:translate-x-10 peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-900"></div>
             </label>
             <span className={`${monthlYearly == true ? 'text-blue-700' : 'text-gray-400'} font-bold`}>Yearly</span>

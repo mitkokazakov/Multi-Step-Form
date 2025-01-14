@@ -8,4 +8,7 @@ type FirstStepDataProps = {
     name: string;
     email: string;
     phone: string;
+    planDuration: string;
+    planType: string,
+    planPrice: string,
   };
