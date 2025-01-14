@@ -36,7 +36,7 @@ const ThirdStep = ({
         <div className="flex flex-col w-full gap-3 lg:flex-row">
           <div className={`w-full border-[1px] ${onlineService ? 'bg-violet-100 border-violet-600' : 'bg-white border-slate-300'} rounded-xl flex justify-between items-center px-4 py-3`}>
             <div className="flex justify-center items-center gap-5">
-              <input type="checkbox" name="online" id="online" className="check w-5 h-5 p-2 accent-violet-700" onClick={() => {SetOnlineService(!onlineService)}}/>
+              <input type="checkbox" name="service" id="service" className="check w-5 h-5 p-2 accent-violet-700" onClick={() => {SetOnlineService(!onlineService)}}/>
               
               <div className="flex flex-col justify-center items-start">
                 <p className="font-bold text-violet-700">Online service</p>
@@ -50,11 +50,11 @@ const ThirdStep = ({
 
         <div className={`w-full border-[1px] ${largerStorage ? 'bg-violet-100 border-violet-600' : 'bg-white border-slate-300'} rounded-xl flex justify-between items-center px-4 py-3`}>
             <div className="flex justify-center items-center gap-5">
-              <input type="checkbox" name="online" id="online" className="check w-5 h-5 p-2 accent-violet-700"  onClick={() => {SetLargerStorage(!largerStorage)}}/>
+              <input type="checkbox" name="storage" id="storage" className="check w-5 h-5 p-2 accent-violet-700"  onClick={() => {SetLargerStorage(!largerStorage)}}/>
               
               <div className="flex flex-col justify-center items-start">
-                <p className="font-bold text-violet-700">Online service</p>
-                <p className="text-gray-400">Acces to multiplayer games</p>
+                <p className="font-bold text-violet-700">Larger storage</p>
+                <p className="text-gray-400">Extra 1TB of cloud save</p>
               </div>
             </div>
 
@@ -63,11 +63,11 @@ const ThirdStep = ({
 
           <div className={`w-full border-[1px] ${customizeProfile ? 'bg-violet-100 border-violet-600' : 'bg-white border-slate-300'} rounded-xl flex justify-between items-center px-4 py-3`}>
             <div className="flex justify-center items-center gap-5">
-              <input type="checkbox" name="online" id="online" className="check w-5 h-5 p-2 accent-violet-700"  onClick={() => {SetCustomizeProfile(!customizeProfile)}}/>
+              <input type="checkbox" name="customProfile" id="customProfile" className="check w-5 h-5 p-2 accent-violet-700"  onClick={() => {SetCustomizeProfile(!customizeProfile)}}/>
               
               <div className="flex flex-col justify-center items-start">
-                <p className="font-bold text-violet-700">Online service</p>
-                <p className="text-gray-400">Acces to multiplayer games</p>
+                <p className="font-bold text-violet-700">Customizable profile</p>
+                <p className="text-gray-400">Custom theme on your profile</p>
               </div>
             </div>
 
@@ -79,7 +79,7 @@ const ThirdStep = ({
       </div>
 
       <div className="w-full h-24 mt-5 bg-white flex justify-end items-center lg:static lg:px-5">
-        <div className="w-[90%]  flex justify-end items-center mx-auto lg:w-full lg:justify-between">
+        <div className="w-[90%]  flex justify-between items-center mx-auto lg:w-full lg:justify-between">
           <button
             className="text-gray-400 font-bold tracking-widest"
             onClick={() => {

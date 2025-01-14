@@ -1,10 +1,11 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import StepsNavigation from './StepsNavigation'
-import FirstStep from './FirstStep'
 import StepsContainer from './StepsContainer'
 
 const FormWrapper = () => {
+
+  
 
     const initialData = {
         name: '',
@@ -12,8 +13,12 @@ const FormWrapper = () => {
         phone: ''
     }
 
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState<number>(localStorage.getItem('step') == null ? 1 : Number(localStorage.getItem('step')))
     const [data, setData] = useState(initialData);
+
+    // useEffect(() => {
+    //   setStep(localStorage.getItem('step') == null ? 1 : Number(localStorage.getItem('step')))
+    // },[])
 
     
   return (
@@ -21,7 +26,7 @@ const FormWrapper = () => {
       
       <StepsNavigation handleStep={setStep} step={step}/>
 
-      <StepsContainer step={step} handleStep={setStep}/>
+      <StepsContainer handleStep={setStep} step={step}/>
     </div>
   )
 }

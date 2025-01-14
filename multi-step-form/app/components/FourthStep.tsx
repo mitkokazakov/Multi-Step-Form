@@ -1,11 +1,20 @@
 "use client";
-import React from "react";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import React, { useEffect } from "react";
 
 const FourthStep = ({
   handleStep,
 }: {
   handleStep: React.Dispatch<React.SetStateAction<any>>;
 }) => {
+
+    useEffect(() => {
+        AOS.init({
+          duration: 1000,
+        });
+      }, []);
+      
   return (
     <div
       data-aos="flip-down"
@@ -21,7 +30,7 @@ const FourthStep = ({
 
         <div className="w-full bg-gray-100 rounded-xl px-5 py-4">
 
-            <div className="w-full flex flex-col border-b-[1px] border-b-slate-300 py-2 mb-3">
+            <div className="w-full flex flex-col border-b-[1px] border-b-slate-300 py-2 pb-3 mb-3 lg:mb-5 lg:pb-5">
                     <p className=" text-blue-800 font-bold text-lg">Arcade (Monthly)</p>
 
                     <div className="w-full flex justify-between items-center">
@@ -50,7 +59,7 @@ const FourthStep = ({
       </div>
 
       <div className="w-full h-24 mt-5 bg-white flex justify-end items-center lg:static lg:px-5">
-        <div className="w-[90%]  flex justify-end items-center mx-auto lg:w-full lg:justify-between">
+        <div className="w-[90%]  flex justify-between items-center mx-auto lg:w-full lg:justify-between">
           <button
             className="text-gray-400 font-bold tracking-widest"
             onClick={() => {

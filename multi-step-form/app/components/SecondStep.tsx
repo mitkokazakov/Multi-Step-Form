@@ -114,7 +114,7 @@ const SecondStep = ({
       </div>
 
       <div className="w-full h-24 mt-5 bg-white flex justify-end items-center lg:static lg:px-5">
-        <div className="w-[90%]  flex justify-end items-center mx-auto lg:w-full lg:justify-between">
+        <div className="w-[90%]  flex justify-between items-center mx-auto lg:w-full lg:justify-between">
         <button className="text-gray-400 font-bold tracking-widest" onClick={() => {handleStep((prev: number) => {
                 return prev - 1;
               });}}>Go Back</button>
