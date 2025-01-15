@@ -9,13 +9,17 @@ const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dis
 
   
 
-  const initialData = {
+  const initialData: DataProps = {
     name: localStorage.getItem('name') == null ? '' : localStorage.getItem('name') as string,
     email: localStorage.getItem('email') == null ? '' : localStorage.getItem('email') as string,
     phone: localStorage.getItem('phone') == null ? '' : localStorage.getItem('phone') as string,
-    planDuration: "",
-    planType: "",
-    planPrice: "",
+    planDuration: localStorage.getItem('planDuration') == 'false' ? 'Monthly' : 'Yearly',
+    planType: localStorage.getItem('planType') == null ? '' : localStorage.getItem('planType') as string,
+    planPrice: localStorage.getItem('planPrice') == null ? 0 : Number(localStorage.getItem('planType')),
+    onlineService: localStorage.getItem('onlineService') == 'false' ? 0 : Number(localStorage.getItem('onlineService')),
+    largerStorage: localStorage.getItem('largerStorage') == 'false' ? 0 : Number(localStorage.getItem('largerStorage')),
+    customProfile: localStorage.getItem('customProfile') == 'false' ? 0 : Number(localStorage.getItem('customProfile')),
+    totalPrice: 0
   };
 
   const [data, setData] = useState(initialData);
@@ -32,7 +36,7 @@ const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dis
 
       {step == 3 ? <ThirdStep step={step} handleStep={handleStep} handleData={setData}/> : null}
 
-      {step == 4 ? <FourthStep handleStep={handleStep} /> : null}
+      {step == 4 ? <FourthStep handleStep={handleStep} data={data}/> : null}
     </div>
   );
 };

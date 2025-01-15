@@ -38,7 +38,7 @@ const FirstStep = ({
   }
 
   function HandleInputsChange(e: React.ChangeEvent<HTMLInputElement>){
-    SetFirstStepData((prev: DataProps) => ({
+    SetFirstStepData((prev: FirstStepDataProps) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));

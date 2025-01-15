@@ -5,16 +5,17 @@ import React, { useEffect } from "react";
 
 const FourthStep = ({
   handleStep,
+  data,
 }: {
   handleStep: React.Dispatch<React.SetStateAction<any>>;
+  data: DataProps;
 }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  }, []);
 
-    useEffect(() => {
-        AOS.init({
-          duration: 1000,
-        });
-      }, []);
-      
   return (
     <div
       data-aos="flip-down"
@@ -29,32 +30,46 @@ const FourthStep = ({
         </p>
 
         <div className="w-full bg-gray-100 rounded-xl px-5 py-4">
-
-            <div className="w-full flex flex-col border-b-[1px] border-b-slate-300 py-2 pb-3 mb-3 lg:mb-5 lg:pb-5">
-                    <p className=" text-blue-800 font-bold text-lg">Arcade (Monthly)</p>
-
-                    <div className="w-full flex justify-between items-center">
-                        <p className=" underline text-gray-400 text-lg">Change</p>
-                        <p className=" text-blue-800 font-bold text-lg">$9/mo</p>
-                    </div>
-            </div>
-
-            <div className="w-full flex justify-between items-center mb-3">
-                <p className="text-slate-400 text-lg">Online service</p>
-                <p className=" font-semibold text-blue-600 text-lg">+$1/mo</p>
-
-            </div>
+          <div className="w-full flex flex-col border-b-[1px] border-b-slate-300 py-2 pb-3 mb-3 lg:mb-5 lg:pb-5">
+            <p className=" text-blue-800 font-bold text-lg">
+              {data.planType} ({data.planDuration})
+            </p>
 
             <div className="w-full flex justify-between items-center">
-                <p className="text-slate-400 text-lg">Larger storage</p>
-                <p className=" font-semibold text-blue-600 text-lg">+$1/mo</p>
-
+              <p className=" underline text-gray-400 text-lg">Change</p>
+              <p className=" text-blue-800 font-bold text-lg">
+                ${data.planPrice}/mo
+              </p>
             </div>
+          </div>
+
+          {data.onlineService != 0 ? (
+            <div className="w-full flex justify-between items-center mb-3">
+              <p className="text-slate-400 text-lg">Online service</p>
+              <p className=" font-semibold text-blue-600 text-lg">+${data.onlineService}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
+            </div>
+          ) : null}
+
+          {data.largerStorage != 0 ? (
+            <div className="w-full flex justify-between items-center">
+              <p className="text-slate-400 text-lg">Larger storage</p>
+              <p className=" font-semibold text-blue-600 text-lg">+${data.largerStorage}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
+            </div>
+          ) : null}
+
+          {data.customProfile != 0 ? (
+            <div className="w-full flex justify-between items-center">
+              <p className="text-slate-400 text-lg">Customizable profile</p>
+              <p className=" font-semibold text-blue-600 text-lg">+${data.customProfile}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
+            </div>
+          ) : null}
         </div>
 
         <div className="w-full flex justify-between items-center px-5 text-lg">
           <p className="text-slate-400">Total (per month)</p>
-          <p className="font-extrabold text-blue-800 tracking-widest">+$12/mo</p>
+          <p className="font-extrabold text-blue-800 tracking-widest">
+            +${data.planPrice + data.onlineService + data.largerStorage + data.customProfile}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}
+          </p>
         </div>
       </div>
 

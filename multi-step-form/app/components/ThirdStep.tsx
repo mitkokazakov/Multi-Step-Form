@@ -43,7 +43,7 @@ const ThirdStep = ({
       ...prev,
       onlineService: onlineService == true ? onlineServicePrice : 0,
       largerStorage: largerStorage == true ? largerStoragePrice : 0,
-      customProfile: customizeProfile == true ? customizeProfilePrice : 0,
+      customProfile: customizeProfile == true ? customizeProfilePrice : 0
     }));
 
     localStorage.setItem("onlineService", JSON.stringify(onlineService));
