@@ -30,7 +30,7 @@ const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dis
 
       {step == 2 ? <SecondStep step={step} handleStep={handleStep} handleData={setData}/> : null}
 
-      {step == 3 ? <ThirdStep step={step} handleStep={handleStep} /> : null}
+      {step == 3 ? <ThirdStep step={step} handleStep={handleStep} handleData={setData}/> : null}
 
       {step == 4 ? <FourthStep handleStep={handleStep} /> : null}
     </div>

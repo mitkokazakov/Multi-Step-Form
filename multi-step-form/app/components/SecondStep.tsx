@@ -18,15 +18,15 @@ const SecondStep = ({
 
 
   const monthlyPrices = {
-    "Arcade": '$9/mo',
-    "Advanced": '$12/mo',
-    "Pro": '$15/mo',
+    "Arcade": 9,
+    "Advanced": 12,
+    "Pro": 15,
   }
 
   const yearlyPrices = {
-    "Arcade": '$90/yr',
-    "Advanced": '$120/yr',
-    "Pro": '$150/yr',
+    "Arcade": 90,
+    "Advanced": 120,
+    "Pro": 150,
   }
 
 
@@ -76,12 +76,16 @@ const SecondStep = ({
       currentChoice = choice;
     }
 
+    let currentPlanPrice = currentPlanType == false ? monthlyPrices[currentChoice  as keyof typeof monthlyPrices] : yearlyPrices[currentChoice  as keyof typeof yearlyPrices];
+
     handleData((prev: DataProps) => ({
       ...prev,
       planDuration: monthlYearly == false ? 'Monthly' : 'Yearly',
       planType: currentChoice,
-      planPrice: currentPlanType == false ? monthlyPrices[currentChoice  as keyof typeof monthlyPrices] : yearlyPrices[currentChoice  as keyof typeof yearlyPrices]
+      planPrice: currentPlanPrice
     }));
+
+    localStorage.setItem('planPrice', currentPlanPrice.toString())
   }
 
   return (
