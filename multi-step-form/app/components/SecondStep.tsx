@@ -39,16 +39,26 @@ const SecondStep = ({
       duration: 1000,
     });
 
-    HandleDataUpdate(activeChoice,monthlYearly)
+    let choiceLocalStorage = localStorage.getItem('planType') as string;
+
+    let planDurationLocalStorage = localStorage.getItem('planDuration') === 'true';
+
+    HandleDataUpdate(choiceLocalStorage,planDurationLocalStorage);
+
+    setMonthlyYearly(planDurationLocalStorage);
+    SetActiveChoice(choiceLocalStorage);
+
   }, [activeChoice,monthlYearly]);
 
   function HandleClickChoice(choice: string){
     SetActiveChoice(choice);
+    localStorage.setItem('planType', choice);
   }
 
   function HandleClickOptions(){
 
     setMonthlyYearly((prev: boolean) => {
+      localStorage.setItem('planDuration', JSON.stringify(!prev));
         return !prev;
     });
   }
@@ -153,7 +163,7 @@ const SecondStep = ({
           <div className="flex items-center space-x-4">
             <span className={`${monthlYearly == false ? 'text-blue-700' : 'text-gray-400'} font-bold`}>Monthly</span>
             <label className="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" onChange={HandleClickOptions} className="sr-only peer" />
+              <input type="checkbox" onChange={HandleClickOptions} className={`sr-only peer`} checked={monthlYearly}/>
               <div className="w-16 h-6 py-2 bg-blue-900 rounded-full peer-border-none peer-bg-blue-900 peer-checked:after:translate-x-10 peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-900"></div>
             </label>
             <span className={`${monthlYearly == true ? 'text-blue-700' : 'text-gray-400'} font-bold`}>Yearly</span>
