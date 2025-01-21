@@ -16,6 +16,24 @@ const FourthStep = ({
     });
   }, []);
 
+  async function CheckAllDataAndSaveIt(){
+
+    const response = await fetch('/api/savedata', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log('Data saved successfully');
+    } else {
+      console.error('Error saving data');
+    }
+
+  }
+
   return (
     <div
       data-aos="flip-down"
@@ -36,7 +54,9 @@ const FourthStep = ({
             </p>
 
             <div className="w-full flex justify-between items-center">
-              <p className=" underline text-gray-400 text-lg">Change</p>
+              <p className=" underline text-gray-400 text-lg cursor-pointer" onClick={() => {handleStep((prev: number) => {
+                return prev - 2;
+              });}}>Change</p>
               <p className=" text-blue-800 font-bold text-lg">
                 ${data.planPrice}/mo
               </p>
@@ -86,7 +106,7 @@ const FourthStep = ({
             Go Back
           </button>
 
-          <button className="bg-violet-700 text-white text-xl px-6 py-2 rounded-md lg:text-base">
+          <button className="bg-violet-700 text-white text-xl px-6 py-2 rounded-md lg:text-base" onClick={CheckAllDataAndSaveIt}>
             Confirm
           </button>
         </div>
