@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import Image from "next/image";
-import { Coiny } from "next/font/google";
 
 const SecondStep = ({
   handleStep,
@@ -175,6 +174,10 @@ const SecondStep = ({
         </div>
       </div>
 
+      {
+        activeChoice == '' || activeChoice == null ? <span className="text-red-500 tracking-widest">You should pick up a plan type!</span> : null
+      }
+
       <div className="w-full h-24 mt-5 bg-white flex justify-end items-center lg:static lg:px-5">
         <div className="w-[90%]  flex justify-between items-center mx-auto lg:w-full lg:justify-between">
         <button className="text-gray-400 font-bold tracking-widest" onClick={() => {handleStep((prev: number) => {
@@ -184,6 +187,11 @@ const SecondStep = ({
           <button
             className="bg-blue-950 text-white text-xl px-6 py-2 rounded-md lg:text-base"
             onClick={() => {
+
+              if(activeChoice == '' || activeChoice == null){
+                return;
+              }
+
               handleStep((prev: number) => {
                 return prev + 1;
               });

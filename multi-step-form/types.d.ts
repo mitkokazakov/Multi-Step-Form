@@ -16,3 +16,9 @@ type FirstStepDataProps = {
     email: string;
     phone: string;
   };
+
+  type FirstStepErrors = {
+    nameError: string,
+    emailError: string,
+    phoneError: string
+  }
