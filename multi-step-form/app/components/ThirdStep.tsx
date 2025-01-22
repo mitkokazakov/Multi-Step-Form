@@ -68,7 +68,7 @@ const ThirdStep = ({
           <div
             className={`w-full border-[1px] ${
               onlineService
-                ? "bg-violet-100 border-violet-600"
+                ? "bg-violet-100/30 border-violet-600"
                 : "bg-white border-slate-300"
             } rounded-xl flex justify-between items-center px-4 py-3`}
           >
@@ -97,7 +97,7 @@ const ThirdStep = ({
         <div
           className={`w-full border-[1px] ${
             largerStorage
-              ? "bg-violet-100 border-violet-600"
+              ? "bg-violet-100/30 border-violet-600"
               : "bg-white border-slate-300"
           } rounded-xl flex justify-between items-center px-4 py-3`}
         >
@@ -125,7 +125,7 @@ const ThirdStep = ({
         <div
           className={`w-full border-[1px] ${
             customizeProfile
-              ? "bg-violet-100 border-violet-600"
+              ? "bg-violet-100/30 border-violet-600"
               : "bg-white border-slate-300"
           } rounded-xl flex justify-between items-center px-4 py-3`}
         >

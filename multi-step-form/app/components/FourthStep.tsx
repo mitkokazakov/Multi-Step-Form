@@ -138,7 +138,7 @@ const FourthStep = ({
 
         <div className="w-full flex justify-between items-center px-5 text-lg">
           <p className="text-slate-400">Total (per month)</p>
-          <p className="font-extrabold text-blue-800 tracking-widest">
+          <p className="font-extrabold text-violet-800 tracking-widest">
             +${data.planPrice + data.onlineService + data.largerStorage + data.customProfile}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}
           </p>
         </div>

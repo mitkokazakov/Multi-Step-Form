@@ -61,11 +61,13 @@ const FirstStep = ({
           ...prev,
           nameError: "Name should be at least 3 character long!",
         }));
+        localStorage.setItem("nameError", "Name should be at least 3 character long!")
       } else {
         SetErrors((prev: FirstStepErrors) => ({
           ...prev,
           nameError: "",
         }));
+        localStorage.setItem("nameError", "")
       }
     }
 
@@ -75,11 +77,13 @@ const FirstStep = ({
           ...prev,
           emailError: "Please provide a valid email address!",
         }));
+        localStorage.setItem("emailError", "Please provide a valid email address!")
       } else {
         SetErrors((prev: FirstStepErrors) => ({
           ...prev,
           emailError: "",
         }));
+        localStorage.setItem("emailError", "")
       }
     }
 
@@ -89,15 +93,22 @@ const FirstStep = ({
           ...prev,
           phoneError: "Phone should be at least 6 symbols!",
         }));
+        localStorage.setItem("phoneError", "Phone should be at least 6 symbols!")
       } else {
         SetErrors((prev: FirstStepErrors) => ({
           ...prev,
           phoneError: "",
         }));
+        localStorage.setItem("phoneError", "")
       }
     }
 
     SetFirstStepData((prev: FirstStepDataProps) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+
+    handleData((prev: DataProps) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
@@ -125,7 +136,7 @@ const FirstStep = ({
         <form className="flex flex-col w-full gap-5">
           <div className="flex flex-col justify-center items-start gap-2 w-full">
             <section className="w-full flex justify-between items-center">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name" className="text-blue-900 font-semibold">Name</label>
             {errors.nameError != "" ? (
               <span className="text-red-500 text-xs tracking-widest">
                 {errors.nameError}
@@ -147,7 +158,7 @@ const FirstStep = ({
 
           <div className="flex flex-col justify-center items-start gap-2 w-full">
             <section className="w-full flex justify-between items-center">
-            <label htmlFor="email">Email Address</label>
+            <label htmlFor="email" className="text-blue-900 font-semibold">Email Address</label>
             {errors.emailError != "" ? (
               <span className="text-red-500 text-xs tracking-widest">
                 {errors.emailError}
@@ -169,7 +180,7 @@ const FirstStep = ({
 
           <div className="flex flex-col justify-center items-start gap-2 w-full">
             <section className="w-full flex justify-between items-center">
-            <label htmlFor="phone">Phone Number</label>
+            <label htmlFor="phone" className="text-blue-900 font-semibold">Phone Number</label>
             {errors.phoneError != "" ? (
               <span className="text-red-500 text-xs tracking-widest">
                 {errors.phoneError}
@@ -201,7 +212,7 @@ const FirstStep = ({
                   ...prev,
                   nameError: "Name should be at least 3 character long!",
                 }));
-
+                localStorage.setItem("nameError", "Name should be at least 3 character long!")
                 return;
               }
 
@@ -216,7 +227,7 @@ const FirstStep = ({
                   ...prev,
                   emailError: "Please provide a valid email address!",
                 }));
-
+                localStorage.setItem("emailError", "Please provide a valid email address!")
                 return;
               }
 
@@ -225,7 +236,7 @@ const FirstStep = ({
                   ...prev,
                   phoneError: "Phone should be at least 6 symbols!",
                 }));
-
+                localStorage.setItem("phoneError", "Phone should be at least 6 symbols!")
                 return;
               }
 

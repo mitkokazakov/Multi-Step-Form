@@ -1,8 +1,8 @@
 User Info
- Name: Dimitar Kazakov
- Email: kazaka_92@abv.bg
+ Name: Zaim Zaimov
+ Email: test1@abv.bg
  Phone: 0895615876
  Plan Duration: Yearly
  Plan Type: Advanced
  Plan Price: 120
- Total Price: 120
+ Total Price: 130
