@@ -193,6 +193,7 @@ const SecondStep = ({
               }
 
               handleStep((prev: number) => {
+                localStorage.setItem('step', (prev + 1).toString());
                 return prev + 1;
               });
             }}

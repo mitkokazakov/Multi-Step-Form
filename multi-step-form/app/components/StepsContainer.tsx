@@ -13,18 +13,21 @@ const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dis
     name: localStorage.getItem('name') == null ? '' : localStorage.getItem('name') as string,
     email: localStorage.getItem('email') == null ? '' : localStorage.getItem('email') as string,
     phone: localStorage.getItem('phone') == null ? '' : localStorage.getItem('phone') as string,
-    planDuration: localStorage.getItem('planDuration') == 'false' ? 'Monthly' : 'Yearly',
-    planType: localStorage.getItem('planType') == null ? '' : localStorage.getItem('planType') as string,
-    planPrice: localStorage.getItem('planPrice') == null ? 0 : Number(localStorage.getItem('planType')),
-    onlineService: localStorage.getItem('onlineService') == 'false' ? 0 : Number(localStorage.getItem('onlineService')),
-    largerStorage: localStorage.getItem('largerStorage') == 'false' ? 0 : Number(localStorage.getItem('largerStorage')),
-    customProfile: localStorage.getItem('customProfile') == 'false' ? 0 : Number(localStorage.getItem('customProfile')),
+    planDuration: localStorage.getItem('planDuration') == 'false' || localStorage.getItem('planDuration') == null ? 'Monthly' : 'Yearly',
+    planType: localStorage.getItem('planType') == null ? 'Arcade' : localStorage.getItem('planType') as string,
+    planPrice: localStorage.getItem('planPrice') == null ? 9 : Number(localStorage.getItem('planPrice')),
+    onlineService: localStorage.getItem('onlineService') == 'false' || localStorage.getItem('onlineService') == null ? 0 : Number(localStorage.getItem('onlineService')),
+    largerStorage: localStorage.getItem('largerStorage') == 'false' || localStorage.getItem('largerStorage') == null ? 0 : Number(localStorage.getItem('largerStorage')),
+    customProfile: localStorage.getItem('customProfile') == 'false' || localStorage.getItem('customProfile') == null ? 0 : Number(localStorage.getItem('customProfile')),
     totalPrice: 0
   };
 
   const [data, setData] = useState(initialData);
 
   console.log(data);
+
+  console.log(localStorage.getItem('name'));
+  
 
   return (
     <div className="w-full h-full bg-slate-200 lg:w-[60%] lg:bg-white">

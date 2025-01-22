@@ -31,9 +31,9 @@ const FirstStep = ({
   });
 
   const [errors, SetErrors] = useState({
-    nameError: "",
-    emailError: "",
-    phoneError: "",
+    nameError: localStorage.getItem("nameError") == null ? "" : localStorage.getItem("nameError") as string,
+    emailError: localStorage.getItem("emailError") == null ? "" : localStorage.getItem("emailError") as string,
+    phoneError: localStorage.getItem("phoneError") == null ? "" : localStorage.getItem("phoneError") as string,
   });
 
   useEffect(() => {
@@ -231,6 +231,7 @@ const FirstStep = ({
 
               HandleClickNext();
               handleStep((prev: number) => {
+                localStorage.setItem('step', (prev + 1).toString());
                 return prev + 1;
               });
             }}

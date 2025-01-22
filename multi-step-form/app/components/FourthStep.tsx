@@ -3,6 +3,8 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import React, { useEffect } from "react";
 
+const emailRegexPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 const FourthStep = ({
   handleStep,
   data,
@@ -16,7 +18,52 @@ const FourthStep = ({
     });
   }, []);
 
+  function ValidateEmail(currentEmail: string) {
+    return emailRegexPattern.test(currentEmail);
+  }
+
   async function CheckAllDataAndSaveIt(){
+
+    // if(data.name.length < 3 || data.phone.length < 6 || !ValidateEmail(data.email)){
+    //   handleStep((prev: number) => {
+    //     localStorage.setItem("step", (prev - 3).toString());
+    //     return prev - 3
+    //   })
+    //   return;
+    // }
+
+    if(data.name.length < 3){
+      localStorage.setItem("nameError", "Name should be at least 3 character long!");
+
+      handleStep((prev: number) => {
+        localStorage.setItem("step", (prev - 3).toString());
+        return prev - 3
+      })
+      return;
+    }
+
+    if(!ValidateEmail(data.email)){
+      localStorage.setItem("emailError", "Please provide a valid email address!");
+
+      handleStep((prev: number) => {
+        localStorage.setItem("step", (prev - 3).toString());
+        return prev - 3
+      })
+      return;
+    }
+
+    if(data.phone.length < 6){
+      localStorage.setItem("phoneError", "Phone should be at least 6 symbols!");
+
+      handleStep((prev: number) => {
+        localStorage.setItem("step", (prev - 3).toString());
+        return prev - 3
+      })
+      return;
+    }
+
+
+
 
     const response = await fetch('/api/savedata', {
       method: 'POST',

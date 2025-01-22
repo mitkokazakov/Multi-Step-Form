@@ -168,6 +168,7 @@ const ThirdStep = ({
             className="bg-blue-950 text-white text-xl px-6 py-2 rounded-md lg:text-base"
             onClick={() => {
               handleStep((prev: number) => {
+                localStorage.setItem('step', (prev + 1).toString());
                 return prev + 1;
               });
             }}
