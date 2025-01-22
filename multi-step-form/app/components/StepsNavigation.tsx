@@ -42,7 +42,7 @@ const StepsNavigation = ({handleStep, step}: {handleStep: React.Dispatch<React.S
         </div>
 
         <div className='flex justify-center items-center gap-5'>
-            <button className={`w-10 h-10 rounded-full ${step == 4 ? 'bg-teal-300 border-none' : 'bg-transparent border-[1px] border-white'}  text-white font-bold`} onClick={() => {handleStep(4)
+            <button className={`w-10 h-10 rounded-full ${step == 4 || step == 5 ? 'bg-teal-300 border-none' : 'bg-transparent border-[1px] border-white'}  text-white font-bold`} onClick={() => {handleStep(4)
               localStorage.setItem('step', '4');
             }}>4</button>
 

@@ -75,6 +75,10 @@ const FourthStep = ({
 
     if (response.ok) {
       console.log('Data saved successfully');
+      handleStep((prev: number) => {
+        localStorage.setItem("step", (prev + 1).toString());
+        return prev + 1;
+      })
     } else {
       console.error('Error saving data');
     }

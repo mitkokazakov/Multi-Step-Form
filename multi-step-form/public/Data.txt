@@ -1,8 +1,8 @@
 User Info
- Name: Morten Pedersen
- Email: test5@abv.bg
+ Name: Dimitar Kazakov
+ Email: kazaka_92@abv.bg
  Phone: 0895615876
  Plan Duration: Yearly
- Plan Type: Pro
- Plan Price: 150
- Total Price: 160
+ Plan Type: Advanced
+ Plan Price: 120
+ Total Price: 120

@@ -4,6 +4,7 @@ import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 import FourthStep from "./FourthStep";
+import FifthStep from "./FifthStep";
 
 const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dispatch<React.SetStateAction<any>>}) => {
 
@@ -40,6 +41,8 @@ const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dis
       {step == 3 ? <ThirdStep step={step} handleStep={handleStep} handleData={setData}/> : null}
 
       {step == 4 ? <FourthStep handleStep={handleStep} data={data}/> : null}
+
+      {step == 5 ? <FifthStep /> : null}
     </div>
   );
 };
