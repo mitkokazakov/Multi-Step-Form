@@ -1,6 +1,6 @@
 # Frontend Mentor - Multi-step form
 
-![Design preview for the Multi-step form coding challenge](./public/desktop-preview.jpg)
+![Design preview for the Multi-step form coding challenge](./multi-step-form/public/desktop-preview.jpg)
 
 ## Welcome! 👋
 
