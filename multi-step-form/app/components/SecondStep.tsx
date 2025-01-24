@@ -6,12 +6,10 @@ import Image from "next/image";
 
 const SecondStep = ({
   handleStep,
-  step,
   handleData
 }: {
-  handleStep: React.Dispatch<React.SetStateAction<any>>;
-  step: number;
-  handleData: React.Dispatch<React.SetStateAction<any>>
+  handleStep: React.Dispatch<React.SetStateAction<number>>;
+  handleData: React.Dispatch<React.SetStateAction<DataProps>>
 }) => {
 
 
@@ -38,9 +36,9 @@ const SecondStep = ({
       duration: 1000,
     });
 
-    let choiceLocalStorage = localStorage.getItem('planType') as string;
+    const choiceLocalStorage = localStorage.getItem('planType') as string;
 
-    let planDurationLocalStorage = localStorage.getItem('planDuration') === 'true';
+    const planDurationLocalStorage = localStorage.getItem('planDuration') === 'true';
 
     HandleDataUpdate(choiceLocalStorage,planDurationLocalStorage);
 
@@ -75,7 +73,7 @@ const SecondStep = ({
       currentChoice = choice;
     }
 
-    let currentPlanPrice = currentPlanType == false ? monthlyPrices[currentChoice  as keyof typeof monthlyPrices] : yearlyPrices[currentChoice  as keyof typeof yearlyPrices];
+    const currentPlanPrice = currentPlanType == false ? monthlyPrices[currentChoice  as keyof typeof monthlyPrices] : yearlyPrices[currentChoice  as keyof typeof yearlyPrices];
 
     handleData((prev: DataProps) => ({
       ...prev,
@@ -181,6 +179,7 @@ const SecondStep = ({
       <div className="w-full h-24 mt-5 bg-white flex justify-end items-center lg:static lg:px-5">
         <div className="w-[90%]  flex justify-between items-center mx-auto lg:w-full lg:justify-between">
         <button className="text-gray-400 font-bold tracking-widest" onClick={() => {handleStep((prev: number) => {
+          localStorage.setItem('step', (prev - 1).toString());
                 return prev - 1;
               });}}>Go Back</button>
 

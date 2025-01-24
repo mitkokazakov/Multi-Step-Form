@@ -8,38 +8,70 @@ const emailRegexPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const FirstStep = ({
   handleStep,
-  step,
   handleData,
 }: {
-  handleStep: React.Dispatch<React.SetStateAction<any>>;
-  step: number;
-  handleData: React.Dispatch<React.SetStateAction<any>>;
+  handleStep: React.Dispatch<React.SetStateAction<number>>;
+  handleData: React.Dispatch<React.SetStateAction<DataProps>>;
 }) => {
+  // const [firstStepData, SetFirstStepData] = useState({
+  //   name:
+  //     localStorage.getItem("name") == null
+  //       ? ""
+  //       : (localStorage.getItem("name") as string),
+  //   email:
+  //     localStorage.getItem("email") == null
+  //       ? ""
+  //       : (localStorage.getItem("email") as string),
+  //   phone:
+  //     localStorage.getItem("phone") == null
+  //       ? ""
+  //       : (localStorage.getItem("phone") as string),
+  // });
+
   const [firstStepData, SetFirstStepData] = useState({
-    name:
-      localStorage.getItem("name") == null
-        ? ""
-        : (localStorage.getItem("name") as string),
-    email:
-      localStorage.getItem("email") == null
-        ? ""
-        : (localStorage.getItem("email") as string),
-    phone:
-      localStorage.getItem("phone") == null
-        ? ""
-        : (localStorage.getItem("phone") as string),
+    name: '',
+    email: '',
+    phone: ''
   });
 
+  // const [errors, SetErrors] = useState({
+  //   nameError: localStorage.getItem("nameError") == null ? "" : localStorage.getItem("nameError") as string,
+  //   emailError: localStorage.getItem("emailError") == null ? "" : localStorage.getItem("emailError") as string,
+  //   phoneError: localStorage.getItem("phoneError") == null ? "" : localStorage.getItem("phoneError") as string,
+  // });
+
   const [errors, SetErrors] = useState({
-    nameError: localStorage.getItem("nameError") == null ? "" : localStorage.getItem("nameError") as string,
-    emailError: localStorage.getItem("emailError") == null ? "" : localStorage.getItem("emailError") as string,
-    phoneError: localStorage.getItem("phoneError") == null ? "" : localStorage.getItem("phoneError") as string,
+    nameError: '',
+    emailError: '',
+    phoneError: '',
   });
 
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
+
+    SetFirstStepData({
+      name:
+        localStorage.getItem("name") == null
+          ? ""
+          : (localStorage.getItem("name") as string),
+      email:
+        localStorage.getItem("email") == null
+          ? ""
+          : (localStorage.getItem("email") as string),
+      phone:
+        localStorage.getItem("phone") == null
+          ? ""
+          : (localStorage.getItem("phone") as string),
+    })
+
+    SetErrors({
+      nameError: localStorage.getItem("nameError") == null ? "" : localStorage.getItem("nameError") as string,
+      emailError: localStorage.getItem("emailError") == null ? "" : localStorage.getItem("emailError") as string,
+      phoneError: localStorage.getItem("phoneError") == null ? "" : localStorage.getItem("phoneError") as string,
+    })
+
   }, []);
 
   function HandleClickNext() {
@@ -51,9 +83,9 @@ const FirstStep = ({
   }
 
   function HandleInputsChange(e: React.ChangeEvent<HTMLInputElement>) {
-    let currentInput = e.target.name;
+    const currentInput = e.target.name;
 
-    let currentInputValue = e.target.value;
+    const currentInputValue = e.target.value;
 
     if (currentInput == "name") {
       if (currentInputValue.length < 3) {

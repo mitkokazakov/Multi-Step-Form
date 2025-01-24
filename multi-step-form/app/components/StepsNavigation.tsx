@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-const StepsNavigation = ({handleStep, step}: {handleStep: React.Dispatch<React.SetStateAction<any>>, step: number}) => {
+const StepsNavigation = ({handleStep, step}: {handleStep: React.Dispatch<React.SetStateAction<number>>, step: number}) => {
   return (
     <div className='h-56 w-full steps-navigation lg:h-full lg:w-[40%] lg:rounded-xl lg:pl-10'>
       <div className='w-full flex justify-center items-start gap-10 py-10 lg:flex-col'>

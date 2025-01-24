@@ -6,19 +6,14 @@ import StepsContainer from './StepsContainer'
 const FormWrapper = () => {
 
   
+    //const [step, setStep] = useState<number>(localStorage.getItem('step') == null ? 1 : Number(localStorage.getItem('step')))
+    const [step, setStep] = useState<number>(0)
 
-    const initialData = {
-        name: '',
-        email: '',
-        phone: ''
-    }
+    useEffect(() => {
+       const currentStep = localStorage.getItem('step') == null ? 1 : Number(localStorage.getItem('step'));
 
-    const [step, setStep] = useState<number>(localStorage.getItem('step') == null ? 1 : Number(localStorage.getItem('step')))
-    const [data, setData] = useState(initialData);
-
-    // useEffect(() => {
-    //   setStep(localStorage.getItem('step') == null ? 1 : Number(localStorage.getItem('step')))
-    // },[])
+       setStep(currentStep);
+    },[])
 
     
   return (

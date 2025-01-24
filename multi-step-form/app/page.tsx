@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import FormWrapper from "./components/FormWrapper";
 
 export default function Home() {

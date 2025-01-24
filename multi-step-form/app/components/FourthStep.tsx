@@ -9,7 +9,7 @@ const FourthStep = ({
   handleStep,
   data,
 }: {
-  handleStep: React.Dispatch<React.SetStateAction<any>>;
+  handleStep: React.Dispatch<React.SetStateAction<number>>;
   data: DataProps;
 }) => {
   useEffect(() => {
@@ -85,6 +85,9 @@ const FourthStep = ({
 
   }
 
+  console.log(data);
+  
+
   return (
     <div
       data-aos="flip-down"
@@ -150,6 +153,7 @@ const FourthStep = ({
             className="text-gray-400 font-bold tracking-widest"
             onClick={() => {
               handleStep((prev: number) => {
+                localStorage.setItem('step', (prev - 1).toString());
                 return prev - 1;
               });
             }}
