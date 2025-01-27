@@ -149,27 +149,27 @@ const FourthStep = ({
                 return prev - 2;
               });}}>Change</p>
               <p className=" text-blue-800 font-bold text-lg">
-                ${data.planPrice}/mo
+                ${data.planPrice}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}
               </p>
             </div>
           </div>
 
           {data.onlineService != 0 ? (
-            <div className="w-full flex justify-between items-center mb-3">
+            <div className="w-full flex justify-between items-center mb-1">
               <p className="text-slate-400 text-lg">Online service</p>
               <p className=" font-semibold text-blue-600 text-lg">+${data.onlineService}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
             </div>
           ) : null}
 
           {data.largerStorage != 0 ? (
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center mb-1">
               <p className="text-slate-400 text-lg">Larger storage</p>
               <p className=" font-semibold text-blue-600 text-lg">+${data.largerStorage}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
             </div>
           ) : null}
 
           {data.customProfile != 0 ? (
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center mb-1">
               <p className="text-slate-400 text-lg">Customizable profile</p>
               <p className=" font-semibold text-blue-600 text-lg">+${data.customProfile}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
             </div>

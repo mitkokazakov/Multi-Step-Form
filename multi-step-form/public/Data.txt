@@ -1,8 +1,12 @@
 User Info
- Name: Ingrid Lasse
- Email: test1@abv.bg
+ Name: Kristine Thorpe
+ Email: test2@abv.bg
  Phone: 0895615876
- Plan Duration: Yearly
- Plan Type: Advanced
- Plan Price: 120
- Total Price: 160
+ Plan Duration: Monthly
+ Plan Type: Pro
+ Plan Price: 15
+ Additional Services:
+  - OnlineService: 1
+  - Larger Storage: 2
+  - Customizable Profile: 0
+ Total Price: 18

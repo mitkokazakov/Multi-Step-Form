@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   const filePath = path.join(process.cwd(), "public", "Data.txt");
 
-  const dataToWrite = `User Info\n Name: ${name}\n Email: ${email}\n Phone: ${phone}\n Plan Duration: ${planDuration}\n Plan Type: ${planType}\n Plan Price: ${planPrice}\n Total Price: ${
+  const dataToWrite = `User Info\n Name: ${name}\n Email: ${email}\n Phone: ${phone}\n Plan Duration: ${planDuration}\n Plan Type: ${planType}\n Plan Price: ${planPrice}\n Additional Services:\n  - OnlineService: ${onlineService}\n  - Larger Storage: ${largerStorage}\n  - Customizable Profile: ${customProfile}\n Total Price: ${
     planPrice + onlineService + largerStorage + customProfile
   }\n`;
 
