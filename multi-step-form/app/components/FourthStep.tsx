@@ -8,18 +8,55 @@ const emailRegexPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const FourthStep = ({
   handleStep,
   data,
+  handleData
 }: {
   handleStep: React.Dispatch<React.SetStateAction<number>>;
   data: DataProps;
+  handleData: React.Dispatch<React.SetStateAction<DataProps>>
 }) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
+
+    CheckIfThirdStepDataIsUpdated();
   }, []);
 
   function ValidateEmail(currentEmail: string) {
     return emailRegexPattern.test(currentEmail);
+  }
+
+  function CheckIfThirdStepDataIsUpdated(){
+
+    if(data.onlineService == 0 || data.largerStorage == 0 || data.customProfile == 0){
+
+      const onlineServiceLocal = localStorage.getItem("onlineService");
+      const largerStorageLocal = localStorage.getItem("largerStorage");
+      const customProfileLocal = localStorage.getItem("customProfile");
+
+      let onlineServicePrice = 0;
+      let largerStoragePrice = 0;
+      let customProfilePrice = 0;
+
+      if(onlineServiceLocal != null && onlineServiceLocal == 'true'){
+        onlineServicePrice = data.planDuration == 'Monthly' ? 1 : 10
+      }
+
+      if(largerStorageLocal != null && largerStorageLocal == 'true'){
+        largerStoragePrice = data.planDuration == 'Monthly' ? 2 : 20
+      }
+
+      if(customProfileLocal != null && customProfileLocal == 'true'){
+        customProfilePrice = data.planDuration == 'Monthly' ? 2 : 20
+      }
+
+      handleData((prev: DataProps) => ({
+        ...prev,
+        onlineService: onlineServicePrice,
+        largerStorage: largerStoragePrice,
+        customProfile: customProfilePrice
+      }));
+    }
   }
 
   async function CheckAllDataAndSaveIt(){

@@ -81,7 +81,7 @@ const StepsContainer = ({step, handleStep}: {step: number, handleStep: React.Dis
 
       {step == 3 ? <ThirdStep handleStep={handleStep} handleData={setData}/> : null}
 
-      {step == 4 ? <FourthStep handleStep={handleStep} data={data}/> : null}
+      {step == 4 ? <FourthStep handleStep={handleStep} data={data} handleData={setData}/> : null}
 
       {step == 5 ? <FifthStep /> : null}
     </div>

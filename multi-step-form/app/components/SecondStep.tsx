@@ -45,6 +45,8 @@ const SecondStep = ({
     setMonthlyYearly(planDurationLocalStorage);
     SetActiveChoice(choiceLocalStorage);
 
+    localStorage.setItem("planDuration", JSON.stringify(planDurationLocalStorage));
+
   }, [activeChoice,monthlYearly]);
 
   function HandleClickChoice(choice: string){

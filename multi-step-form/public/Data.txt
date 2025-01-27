@@ -1,8 +1,8 @@
 User Info
- Name: Viktor Liskov
- Email: kazaka_92@abv.bg
+ Name: Ingrid Lasse
+ Email: test1@abv.bg
  Phone: 0895615876
  Plan Duration: Yearly
  Plan Type: Advanced
  Plan Price: 120
- Total Price: 140
+ Total Price: 160
