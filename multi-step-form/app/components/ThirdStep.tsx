@@ -38,8 +38,11 @@ const ThirdStep = ({
 
     let planDur = localStorage.getItem("planDuration");
 
-    if (planDur == null || planDur == undefined || planDur == "") {
+    if (planDur == null || planDur == undefined || planDur == "" || planDur == 'false') {
       planDur = "Monthly";
+    }
+    else{
+      planDur = "Yearly"
     }
 
     SetPlanDuration(planDur);
