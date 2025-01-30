@@ -28,21 +28,37 @@ const ThirdStep = ({
     console.log("Hello from third");
 
     //console.log(localStorage.getItem('onlineService'));
-    
-    
-    SetOnlineService(localStorage.getItem('onlineService') == null || localStorage.getItem('onlineService') == 'false' ? false : true);
-    SetLargerStorage(localStorage.getItem('largerStorage') == null || localStorage.getItem('largerStorage') == 'false' ? false : true);
-    SetCustomizeProfile(localStorage.getItem('customProfile')== null || localStorage.getItem('customProfile') == 'false' ? false : true)
 
-    
+    SetOnlineService(
+      localStorage.getItem("onlineService") == null ||
+        localStorage.getItem("onlineService") == "false"
+        ? false
+        : true
+    );
+    SetLargerStorage(
+      localStorage.getItem("largerStorage") == null ||
+        localStorage.getItem("largerStorage") == "false"
+        ? false
+        : true
+    );
+    SetCustomizeProfile(
+      localStorage.getItem("customProfile") == null ||
+        localStorage.getItem("customProfile") == "false"
+        ? false
+        : true
+    );
 
     let planDur = localStorage.getItem("planDuration");
 
-    if (planDur == null || planDur == undefined || planDur == "" || planDur == 'false') {
+    if (
+      planDur == null ||
+      planDur == undefined ||
+      planDur == "" ||
+      planDur == "false"
+    ) {
       planDur = "Monthly";
-    }
-    else{
-      planDur = "Yearly"
+    } else {
+      planDur = "Yearly";
     }
 
     SetPlanDuration(planDur);
@@ -50,33 +66,68 @@ const ThirdStep = ({
     //HandleDataUpdate();
   }, []);
 
- 
+  function SetExtraAddOns(currentState: boolean, typeOfService: string) {
+    if (typeOfService == "onlineService") {
+      let price = 0;
+
+      if (currentState) {
+        price = planDuration == "Monthly" ? 1 : 10;
+        localStorage.setItem("onlineServicePrice", JSON.stringify(price));
+      } else {
+        localStorage.setItem("onlineServicePrice", JSON.stringify(price));
+      }
+    } else if (typeOfService == "largerStorage") {
+      let price = 0;
+
+      if (currentState) {
+        price = planDuration == "Monthly" ? 2 : 20;
+        localStorage.setItem("largerStoragePrice", JSON.stringify(price));
+      } else {
+        localStorage.setItem("largerStoragePrice", JSON.stringify(price));
+      }
+    } else if (typeOfService == "customProfile") {
+      let price = 0;
+
+      if (currentState) {
+        price = planDuration == "Monthly" ? 1 : 10;
+        localStorage.setItem("customProfilePrice", JSON.stringify(price));
+      } else {
+        localStorage.setItem("customProfilePrice", JSON.stringify(price));
+      }
+    }
+  }
 
   function HandleDataUpdate() {
-
-     const onlineServicePrice = planDuration == "Monthly" ? 1 : 10;
-     const largerStoragePrice = planDuration == "Monthly" ? 2 : 20;
-     const customizeProfilePrice = planDuration == "Monthly" ? 2 : 20;
+    const onlineServicePrice = planDuration == "Monthly" ? 1 : 10;
+    const largerStoragePrice = planDuration == "Monthly" ? 2 : 20;
+    const customizeProfilePrice = planDuration == "Monthly" ? 2 : 20;
 
     console.log(onlineServicePrice);
     console.log(onlineService);
-    
-    
 
     handleData((prev: DataProps) => ({
       ...prev,
       onlineService: onlineService == true ? onlineServicePrice : 0,
       largerStorage: largerStorage == true ? largerStoragePrice : 0,
-      customProfile: customizeProfile == true ? customizeProfilePrice : 0
+      customProfile: customizeProfile == true ? customizeProfilePrice : 0,
     }));
 
     localStorage.setItem("onlineService", JSON.stringify(onlineService));
     localStorage.setItem("largerStorage", JSON.stringify(largerStorage));
     localStorage.setItem("customProfile", JSON.stringify(customizeProfile));
 
-    localStorage.setItem("onlineServicePrice", JSON.stringify(onlineService == true ? onlineServicePrice : 0));
-    localStorage.setItem("largerStoragePrice", JSON.stringify(largerStorage == true ? largerStoragePrice : 0));
-    localStorage.setItem("customProfilePrice", JSON.stringify(customizeProfile == true ? customizeProfilePrice : 0));
+    localStorage.setItem(
+      "onlineServicePrice",
+      JSON.stringify(onlineService == true ? onlineServicePrice : 0)
+    );
+    localStorage.setItem(
+      "largerStoragePrice",
+      JSON.stringify(largerStorage == true ? largerStoragePrice : 0)
+    );
+    localStorage.setItem(
+      "customProfilePrice",
+      JSON.stringify(customizeProfile == true ? customizeProfilePrice : 0)
+    );
   }
 
   return (
@@ -108,10 +159,12 @@ const ThirdStep = ({
                 className="check w-5 h-5 p-2 accent-violet-700"
                 checked={onlineService}
                 onChange={() => {
-                  SetOnlineService((prev:boolean) => {
-                    const onlineServicePrice = planDuration == 'Monthly' ? 1 : 10;
-                  localStorage.setItem("onlineServicePrice", JSON.stringify(onlineServicePrice));
-                    localStorage.setItem("onlineService", JSON.stringify(!prev));
+                  SetOnlineService((prev: boolean) => {
+                    SetExtraAddOns(!prev,'onlineService');
+                    localStorage.setItem(
+                      "onlineService",
+                      JSON.stringify(!prev)
+                    );
                     return !prev;
                   });
                 }}
@@ -143,8 +196,7 @@ const ThirdStep = ({
               checked={largerStorage}
               onChange={() => {
                 SetLargerStorage((prev: boolean) => {
-                  const largerStoragePrice = planDuration == 'Monthly' ? 2 : 20;
-                  localStorage.setItem("largerStoragePrice", JSON.stringify(largerStoragePrice));
+                  SetExtraAddOns(!prev,'largerStorage');
                   localStorage.setItem("largerStorage", JSON.stringify(!prev));
                   return !prev;
                 });
@@ -176,8 +228,7 @@ const ThirdStep = ({
               checked={customizeProfile}
               onChange={() => {
                 SetCustomizeProfile((prev: boolean) => {
-                  const customProfilePrice = planDuration == 'Monthly' ? 2 : 20;
-                  localStorage.setItem("customProfilePrice", JSON.stringify(customProfilePrice));
+                  SetExtraAddOns(!prev,'customProfile');
                   localStorage.setItem("customProfile", JSON.stringify(!prev));
                   return !prev;
                 });
@@ -199,11 +250,10 @@ const ThirdStep = ({
           <button
             className="text-gray-400 font-bold tracking-widest"
             onClick={() => {
-
               //HandleDataUpdate();
 
               handleStep((prev: number) => {
-                localStorage.setItem('step', (prev - 1).toString());
+                localStorage.setItem("step", (prev - 1).toString());
                 return prev - 1;
               });
             }}
@@ -214,11 +264,10 @@ const ThirdStep = ({
           <button
             className="bg-blue-950 text-white text-xl px-6 py-2 rounded-md lg:text-base"
             onClick={() => {
-
               HandleDataUpdate();
 
               handleStep((prev: number) => {
-                localStorage.setItem('step', (prev + 1).toString());
+                localStorage.setItem("step", (prev + 1).toString());
                 return prev + 1;
               });
             }}
