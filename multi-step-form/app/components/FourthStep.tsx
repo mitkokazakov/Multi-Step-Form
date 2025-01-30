@@ -8,11 +8,11 @@ const emailRegexPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const FourthStep = ({
   handleStep,
   data,
-  handleData
+  handleData,
 }: {
   handleStep: React.Dispatch<React.SetStateAction<number>>;
   data: DataProps;
-  handleData: React.Dispatch<React.SetStateAction<DataProps>>
+  handleData: React.Dispatch<React.SetStateAction<DataProps>>;
 }) => {
   useEffect(() => {
     AOS.init({
@@ -22,45 +22,71 @@ const FourthStep = ({
     CheckIfThirdStepDataIsUpdated();
   }, []);
 
+  console.log(data);
+
   function ValidateEmail(currentEmail: string) {
     return emailRegexPattern.test(currentEmail);
   }
 
-  function CheckIfThirdStepDataIsUpdated(){
+  function CheckIfThirdStepDataIsUpdated() {
+    let onlineServicePrice = 0;
+    let largerStoragePrice = 0;
+    let customProfilePrice = 0;
 
-    if(data.onlineService == 0 || data.largerStorage == 0 || data.customProfile == 0){
+    const onlineServiceLocal = localStorage.getItem("onlineServicePrice");
+    const largerStorageLocal = localStorage.getItem("largerStoragePrice");
+    const customProfileLocal = localStorage.getItem("customProfilePrice");
 
-      const onlineServiceLocal = localStorage.getItem("onlineService");
-      const largerStorageLocal = localStorage.getItem("largerStorage");
-      const customProfileLocal = localStorage.getItem("customProfile");
-
-      let onlineServicePrice = 0;
-      let largerStoragePrice = 0;
-      let customProfilePrice = 0;
-
-      if(onlineServiceLocal != null && onlineServiceLocal == 'true'){
-        onlineServicePrice = data.planDuration == 'Monthly' ? 1 : 10
-      }
-
-      if(largerStorageLocal != null && largerStorageLocal == 'true'){
-        largerStoragePrice = data.planDuration == 'Monthly' ? 2 : 20
-      }
-
-      if(customProfileLocal != null && customProfileLocal == 'true'){
-        customProfilePrice = data.planDuration == 'Monthly' ? 2 : 20
-      }
-
-      handleData((prev: DataProps) => ({
-        ...prev,
-        onlineService: onlineServicePrice,
-        largerStorage: largerStoragePrice,
-        customProfile: customProfilePrice
-      }));
+    if(onlineServiceLocal != null ){
+      onlineServicePrice = Number(onlineServiceLocal);
     }
+
+    if(largerStorageLocal != null){
+      largerStoragePrice = Number(largerStorageLocal);
+    }
+
+    if(customProfileLocal != null){
+      customProfilePrice = Number(customProfileLocal);
+    }
+
+    handleData((prev: DataProps) => ({
+      ...prev,
+      onlineService: onlineServicePrice,
+      largerStorage: largerStoragePrice,
+      customProfile: customProfilePrice,
+    }));
+
+    // if (
+    //   data.onlineService == 0 ||
+    //   data.largerStorage == 0 ||
+    //   data.customProfile == 0
+    // ) {
+    //   const onlineServiceLocal = localStorage.getItem("onlineService");
+    //   const largerStorageLocal = localStorage.getItem("largerStorage");
+    //   const customProfileLocal = localStorage.getItem("customProfile");
+
+    //   if (onlineServiceLocal != null && onlineServiceLocal == "true") {
+    //     onlineServicePrice = data.planDuration == "Monthly" ? 1 : 10;
+    //   }
+
+    //   if (largerStorageLocal != null && largerStorageLocal == "true") {
+    //     largerStoragePrice = data.planDuration == "Monthly" ? 2 : 20;
+    //   }
+
+    //   if (customProfileLocal != null && customProfileLocal == "true") {
+    //     customProfilePrice = data.planDuration == "Monthly" ? 2 : 20;
+    //   }
+
+    //   handleData((prev: DataProps) => ({
+    //     ...prev,
+    //     onlineService: onlineServicePrice,
+    //     largerStorage: largerStoragePrice,
+    //     customProfile: customProfilePrice,
+    //   }));
+    // }
   }
 
-  async function CheckAllDataAndSaveIt(){
-
+  async function CheckAllDataAndSaveIt() {
     // if(data.name.length < 3 || data.phone.length < 6 || !ValidateEmail(data.email)){
     //   handleStep((prev: number) => {
     //     localStorage.setItem("step", (prev - 3).toString());
@@ -69,61 +95,62 @@ const FourthStep = ({
     //   return;
     // }
 
-    if(data.name.length < 3){
-      localStorage.setItem("nameError", "Name should be at least 3 character long!");
+    if (data.name.length < 3) {
+      localStorage.setItem(
+        "nameError",
+        "Name should be at least 3 character long!"
+      );
 
       handleStep((prev: number) => {
         localStorage.setItem("step", (prev - 3).toString());
-        return prev - 3
-      })
+        return prev - 3;
+      });
       return;
     }
 
-    if(!ValidateEmail(data.email)){
-      localStorage.setItem("emailError", "Please provide a valid email address!");
+    if (!ValidateEmail(data.email)) {
+      localStorage.setItem(
+        "emailError",
+        "Please provide a valid email address!"
+      );
 
       handleStep((prev: number) => {
         localStorage.setItem("step", (prev - 3).toString());
-        return prev - 3
-      })
+        return prev - 3;
+      });
       return;
     }
 
-    if(data.phone.length < 6){
+    if (data.phone.length < 6) {
       localStorage.setItem("phoneError", "Phone should be at least 6 symbols!");
 
       handleStep((prev: number) => {
         localStorage.setItem("step", (prev - 3).toString());
-        return prev - 3
-      })
+        return prev - 3;
+      });
       return;
     }
 
-
-
-
-    const response = await fetch('/api/savedata', {
-      method: 'POST',
+    const response = await fetch("/api/savedata", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
 
     if (response.ok) {
-      console.log('Data saved successfully');
+      console.log("Data saved successfully");
       handleStep((prev: number) => {
         localStorage.setItem("step", (prev + 1).toString());
         return prev + 1;
-      })
+      });
     } else {
-      console.error('Error saving data');
+      console.error("Error saving data");
     }
-
   }
 
   console.log(data);
-  
 
   return (
     <div
@@ -145,11 +172,18 @@ const FourthStep = ({
             </p>
 
             <div className="w-full flex justify-between items-center">
-              <p className=" underline text-gray-400 text-lg cursor-pointer" onClick={() => {handleStep((prev: number) => {
-                return prev - 2;
-              });}}>Change</p>
+              <p
+                className=" underline text-gray-400 text-lg cursor-pointer"
+                onClick={() => {
+                  handleStep((prev: number) => {
+                    return prev - 2;
+                  });
+                }}
+              >
+                Change
+              </p>
               <p className=" text-blue-800 font-bold text-lg">
-                ${data.planPrice}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}
+                ${data.planPrice}/{data.planDuration == "Monthly" ? "mo" : "yr"}
               </p>
             </div>
           </div>
@@ -157,21 +191,30 @@ const FourthStep = ({
           {data.onlineService != 0 ? (
             <div className="w-full flex justify-between items-center mb-1">
               <p className="text-slate-400 text-lg">Online service</p>
-              <p className=" font-semibold text-blue-600 text-lg">+${data.onlineService}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
+              <p className=" font-semibold text-blue-600 text-lg">
+                +${data.onlineService}/
+                {data.planDuration == "Monthly" ? "mo" : "yr"}
+              </p>
             </div>
           ) : null}
 
           {data.largerStorage != 0 ? (
             <div className="w-full flex justify-between items-center mb-1">
               <p className="text-slate-400 text-lg">Larger storage</p>
-              <p className=" font-semibold text-blue-600 text-lg">+${data.largerStorage}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
+              <p className=" font-semibold text-blue-600 text-lg">
+                +${data.largerStorage}/
+                {data.planDuration == "Monthly" ? "mo" : "yr"}
+              </p>
             </div>
           ) : null}
 
           {data.customProfile != 0 ? (
             <div className="w-full flex justify-between items-center mb-1">
               <p className="text-slate-400 text-lg">Customizable profile</p>
-              <p className=" font-semibold text-blue-600 text-lg">+${data.customProfile}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}</p>
+              <p className=" font-semibold text-blue-600 text-lg">
+                +${data.customProfile}/
+                {data.planDuration == "Monthly" ? "mo" : "yr"}
+              </p>
             </div>
           ) : null}
         </div>
@@ -179,7 +222,12 @@ const FourthStep = ({
         <div className="w-full flex justify-between items-center px-5 text-lg">
           <p className="text-slate-400">Total (per month)</p>
           <p className="font-extrabold text-violet-800 tracking-widest">
-            +${data.planPrice + data.onlineService + data.largerStorage + data.customProfile}/{data.planDuration == 'Monthly' ? 'mo' : 'yr'}
+            +$
+            {data.planPrice +
+              data.onlineService +
+              data.largerStorage +
+              data.customProfile}
+            /{data.planDuration == "Monthly" ? "mo" : "yr"}
           </p>
         </div>
       </div>
@@ -190,7 +238,7 @@ const FourthStep = ({
             className="text-gray-400 font-bold tracking-widest"
             onClick={() => {
               handleStep((prev: number) => {
-                localStorage.setItem('step', (prev - 1).toString());
+                localStorage.setItem("step", (prev - 1).toString());
                 return prev - 1;
               });
             }}
@@ -198,7 +246,10 @@ const FourthStep = ({
             Go Back
           </button>
 
-          <button className="bg-violet-700 text-white text-xl px-6 py-2 rounded-md lg:text-base" onClick={CheckAllDataAndSaveIt}>
+          <button
+            className="bg-violet-700 text-white text-xl px-6 py-2 rounded-md lg:text-base"
+            onClick={CheckAllDataAndSaveIt}
+          >
             Confirm
           </button>
         </div>

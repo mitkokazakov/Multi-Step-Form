@@ -109,6 +109,8 @@ const ThirdStep = ({
                 checked={onlineService}
                 onChange={() => {
                   SetOnlineService((prev:boolean) => {
+                    const onlineServicePrice = planDuration == 'Monthly' ? 1 : 10;
+                  localStorage.setItem("onlineServicePrice", JSON.stringify(onlineServicePrice));
                     localStorage.setItem("onlineService", JSON.stringify(!prev));
                     return !prev;
                   });
@@ -141,6 +143,8 @@ const ThirdStep = ({
               checked={largerStorage}
               onChange={() => {
                 SetLargerStorage((prev: boolean) => {
+                  const largerStoragePrice = planDuration == 'Monthly' ? 2 : 20;
+                  localStorage.setItem("largerStoragePrice", JSON.stringify(largerStoragePrice));
                   localStorage.setItem("largerStorage", JSON.stringify(!prev));
                   return !prev;
                 });
@@ -172,6 +176,8 @@ const ThirdStep = ({
               checked={customizeProfile}
               onChange={() => {
                 SetCustomizeProfile((prev: boolean) => {
+                  const customProfilePrice = planDuration == 'Monthly' ? 2 : 20;
+                  localStorage.setItem("customProfilePrice", JSON.stringify(customProfilePrice));
                   localStorage.setItem("customProfile", JSON.stringify(!prev));
                   return !prev;
                 });
