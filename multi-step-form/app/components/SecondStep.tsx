@@ -56,7 +56,27 @@ const SecondStep = ({
 
   function HandleClickOptions(){
 
+    const onlineServicePrice = localStorage.getItem("onlineServicePrice");
+    const largerStoragePrice = localStorage.getItem("largerStoragePrice");
+    const customProfilePrice = localStorage.getItem("customProfilePrice");
+
     setMonthlyYearly((prev: boolean) => {
+
+      if(onlineServicePrice != null){
+        const price = !prev == false ? 1 : 10;
+        localStorage.setItem("onlineServicePrice", price.toString());
+      }
+
+      if(largerStoragePrice != null){
+        const price = !prev == false ? 2 : 20;
+        localStorage.setItem("largerStoragePrice", price.toString());
+      }
+
+      if(customProfilePrice != null){
+        const price = !prev == false ? 2 : 20;
+        localStorage.setItem("customProfilePrice", price.toString());
+      }
+
       localStorage.setItem('planDuration', JSON.stringify(!prev));
         return !prev;
     });
